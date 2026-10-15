@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Portafolio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <section class="hero">
+    <div class="avatar">{{ perfil.iniciales }}</div>
+    <h1>{{ perfil.nombre }}</h1>
+    <p class="carrera">{{ perfil.carrera }}</p>
+    <p class="universidad">{{ perfil.universidad }} · {{ perfil.grupo }}</p>
+    <ion-button shape="round" color="light" [href]="perfil.github" target="_blank" rel="noopener noreferrer">
+      <ion-icon slot="start" name="logo-github"></ion-icon>
+      Ver mi GitHub
+    </ion-button>
+  </section>
+
+  <div class="contenido">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Sobre mí</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>{{ perfil.sobreMi }}</ion-card-content>
+    </ion-card>
+
+    <h2 class="titulo-seccion">Habilidades</h2>
+    <div class="chips">
+      @for (habilidad of habilidades; track habilidad.nombre) {
+        <ion-chip color="primary">
+          <ion-icon [name]="habilidad.icono"></ion-icon>
+          <ion-label>{{ habilidad.nombre }}</ion-label>
+        </ion-chip>
+      }
+    </div>
+
+    <h2 class="titulo-seccion">Proyectos</h2>
+    <div class="proyectos">
+      @for (proyecto of proyectos; track proyecto.nombre) {
+        <ion-card class="proyecto">
+          <ion-card-header>
+            <ion-icon class="icono-proyecto" color="primary" [name]="proyecto.icono"></ion-icon>
+            <ion-card-title>{{ proyecto.nombre }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ proyecto.descripcion }}</p>
+            <div class="tecnologias">
+              @for (tec of proyecto.tecnologias; track tec) {
+                <ion-badge color="secondary">{{ tec }}</ion-badge>
+              }
+            </div>
+          </ion-card-content>
+        </ion-card>
+      }
+    </div>
+  </div>
+
+  <footer class="pie">
+    <ion-icon name="cube-outline"></ion-icon>
+    Servido desde un contenedor Docker con Nginx · {{ anio }}
+  </footer>
+</ion-content>

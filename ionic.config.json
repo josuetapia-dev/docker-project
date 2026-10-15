@@ -1,0 +1,7 @@
+{
+  "name": "docker-project",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
